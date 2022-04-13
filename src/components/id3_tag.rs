@@ -1,7 +1,6 @@
 use crate::*;
-use id3::{self, TagLike};
 
-pub use id3::Tag as Id3v2InnerTag;
+pub use id3::{self, Tag as Id3v2InnerTag, TagLike};
 
 impl_tag!(Id3v2Tag, Id3v2InnerTag, TagType::Id3v2);
 
@@ -20,6 +19,7 @@ impl<'a> From<&'a Id3v2Tag> for AnyTag<'a> {
             total_tracks: inp.total_tracks(),
             disc_number: inp.disc_number(),
             total_discs: inp.total_discs(),
+            genre: inp.genre(),
         }
     }
 }
@@ -39,6 +39,7 @@ impl<'a> From<AnyTag<'a>> for Id3v2Tag {
                 inp.total_tracks().map(|v| t.set_total_tracks(v as u32));
                 inp.disc_number().map(|v| t.set_disc(v as u32));
                 inp.total_discs().map(|v| t.set_total_discs(v as u32));
+                inp.genre().map(|v| t.set_genre(v));
                 t
             },
         }
@@ -176,6 +177,16 @@ impl AudioTagEdit for Id3v2Tag {
     }
     fn remove_total_discs(&mut self) {
         self.inner.remove_total_discs();
+    }
+
+    fn genre(&self) -> Option<&str> {
+        self.inner.genre()
+    }
+    fn set_genre(&mut self, v: &str) {
+        self.inner.set_genre(v);
+    }
+    fn remove_genre(&mut self) {
+        self.inner.remove_genre();
     }
 }
 
