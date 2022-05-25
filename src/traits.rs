@@ -35,6 +35,9 @@ pub trait AudioTagEdit: AudioTagConfig {
     fn set_year(&mut self, year: i32);
     fn remove_year(&mut self);
 
+    fn duration(&self) -> Option<f64>;
+    fn set_duration(&mut self, duration: &str);
+
     fn album(&self) -> Option<Album<'_>> {
         self.album_title().map(|title| Album {
             title,

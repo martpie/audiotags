@@ -1,5 +1,5 @@
 use crate::*;
-use metaflac;
+use metaflac::{self, block::StreamInfo};
 
 pub use metaflac::Tag as FlacInnerTag;
 
@@ -27,6 +27,7 @@ impl<'a> From<&'a FlacTag> for AnyTag<'a> {
         t.title = inp.title();
         t.artists = inp.artists();
         t.year = inp.year();
+        t.duration = inp.duration();
         t.album_title = inp.album_title();
         t.album_artists = inp.album_artists();
         t.album_cover = inp.album_cover();
@@ -88,6 +89,16 @@ impl AudioTagEdit for FlacTag {
     fn set_year(&mut self, year: i32) {
         self.set_first("DATE", &year.to_string());
         self.set_first("YEAR", &year.to_string());
+    }
+
+
+    fn duration(&self) -> Option<f64> {
+        let flac: &StreamInfo = self.inner.get_streaminfo().unwrap();
+        Some((flac.total_samples / flac.sample_rate as u64) as f64)
+    }
+
+    fn set_duration(&mut self, duration: &str) {
+        // unimplemented!();
     }
 
     fn album_title(&self) -> Option<&str> {
