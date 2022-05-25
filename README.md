@@ -63,7 +63,6 @@ fn main() {
 
     tag.write_to_path(MP3_FILE).expect("Fail to save");
 }
-
 ```
 
 License: MIT

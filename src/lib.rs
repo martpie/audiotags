@@ -35,11 +35,13 @@
 //!
 //! Read the [manual](https://docs.rs/audiotags) for some examples, but here's a quick-one:
 //!
-//! ```rust
+//! ```rust,no_run
+//! use audiotags2::{Tag, Picture, MimeType};
+//!
 //! fn main() {
 //!     // using `default()` or `new()` alone so that the metadata format is
 //!     // guessed (from the file extension) (in this case, Id3v2 tag is read)
-//!     let mut tag = Tag::new().read_from_path(MP3_FILE).unwrap();
+//!     let mut tag = Tag::new().read_from_path("test.mp3").unwrap();
 //!
 //!     tag.set_title("foo title");
 //!     assert_eq!(tag.title(), Some("foo title"));
@@ -59,9 +61,8 @@
 //!     assert!(tag.album_cover().is_none());
 //!     tag.remove_album_cover();
 //!
-//!     tag.write_to_path(MP3_FILE).expect("Fail to save");
+//!     tag.write_to_path("test.mp3").expect("Fail to save");
 //! }
-//!
 //! ```
 
 pub(crate) use audiotags_dev_macro::*;
@@ -171,7 +172,7 @@ pub enum TagType {
     ///
     /// ## References
     ///
-    /// - https://www.wikiwand.com/en/ID3
+    /// - <https://www.wikiwand.com/en/ID3>
     Id3v2,
     Flac,
     /// ## Common file extensions
@@ -180,7 +181,7 @@ pub enum TagType {
     ///
     /// ## References
     ///
-    /// - https://www.wikiwand.com/en/MPEG-4_Part_14
+    /// - <https://www.wikiwand.com/en/MPEG-4_Part_14>
     Mp4,
 }
 

@@ -19,6 +19,9 @@ audiotags-dev-macro = {path = "./audiotags-dev-macro", version = "0.1.4"}
 [dev-dependencies]
 tempfile = "3.3.0"
 
+[build-dependencies]
+readme-rustdocifier = "0.1.0"
+
 [features]
 default = ['from']
 from = []
