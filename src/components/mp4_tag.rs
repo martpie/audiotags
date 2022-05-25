@@ -10,7 +10,7 @@ impl<'a> From<&'a Mp4Tag> for AnyTag<'a> {
         let title = inp.title();
         let artists = inp.artists().map(|i| i.into_iter().collect::<Vec<_>>());
         let year = inp.year();
-        let duration = inp.inner.duration();
+        let duration = inp.duration();
         let album_title = inp.album_title();
         let album_artists = inp
             .album_artists()
@@ -117,11 +117,7 @@ impl AudioTagEdit for Mp4Tag {
 
     // Return Option with duration in second
     fn duration(&self) -> Option<f64> {
-        self.inner.duration()
-    }
-
-    fn set_duration(&mut self, duration: &str) {
-        // unimplemented!()
+        self.inner.duration().map(|d| d.as_secs_f64())
     }
 
     fn album_title(&self) -> Option<&str> {
