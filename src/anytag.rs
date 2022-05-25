@@ -46,9 +46,6 @@ impl<'a> AnyTag<'a> {
     pub fn duration(&self) -> Option<f64> {
         self.duration
     }
-    pub fn set_duration(&mut self, duration: f64) {
-        self.duration = Some(duration);
-    }
     pub fn album_title(&self) -> Option<&str> {
         self.album_title
     }
