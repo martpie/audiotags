@@ -32,16 +32,36 @@ impl<'a> From<AnyTag<'a>> for Id3v2Tag {
             config: inp.config,
             inner: {
                 let mut t = id3::Tag::new();
-                if let Some(v) = inp.title() { t.set_title(v) }
-                if let Some(v) = inp.artists_as_string() { t.set_artist(&v) }
-                if let Some(v) = inp.year { t.set_year(v) }
-                if let Some(v) = inp.album_title() { t.set_album(v) }
-                if let Some(v) = inp.album_artists_as_string() { t.set_artist(&v) }
-                if let Some(v) = inp.track_number() { t.set_track(v as u32) }
-                if let Some(v) = inp.total_tracks() { t.set_total_tracks(v as u32) }
-                if let Some(v) = inp.disc_number() { t.set_disc(v as u32) }
-                if let Some(v) = inp.total_discs() { t.set_total_discs(v as u32) }
-                if let Some(v) = inp.genre() { t.set_genre(v) }
+                if let Some(v) = inp.title() {
+                    t.set_title(v)
+                }
+                if let Some(v) = inp.artists_as_string() {
+                    t.set_artist(&v)
+                }
+                if let Some(v) = inp.year {
+                    t.set_year(v)
+                }
+                if let Some(v) = inp.album_title() {
+                    t.set_album(v)
+                }
+                if let Some(v) = inp.album_artists_as_string() {
+                    t.set_artist(&v)
+                }
+                if let Some(v) = inp.track_number() {
+                    t.set_track(v as u32)
+                }
+                if let Some(v) = inp.total_tracks() {
+                    t.set_total_tracks(v as u32)
+                }
+                if let Some(v) = inp.disc_number() {
+                    t.set_disc(v as u32)
+                }
+                if let Some(v) = inp.total_discs() {
+                    t.set_total_discs(v as u32)
+                }
+                if let Some(v) = inp.genre() {
+                    t.set_genre(v)
+                }
                 t
             },
         }
@@ -57,10 +77,7 @@ impl<'a> std::convert::TryFrom<&'a id3::frame::Picture> for Picture<'a> {
             ..
         } = inp;
         let mime_type: MimeType = mime_type.as_str().try_into()?;
-        Ok(Self {
-            data,
-            mime_type,
-        })
+        Ok(Self { data, mime_type })
     }
 }
 
@@ -120,7 +137,8 @@ impl AudioTagEdit for Id3v2Tag {
 
     fn album_cover(&self) -> Option<Picture> {
         self.inner
-            .pictures().find(|&pic| matches!(pic.picture_type, id3::frame::PictureType::CoverFront))
+            .pictures()
+            .find(|&pic| matches!(pic.picture_type, id3::frame::PictureType::CoverFront))
             .and_then(|pic| {
                 Some(Picture {
                     data: &pic.data,

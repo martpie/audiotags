@@ -47,15 +47,33 @@ impl<'a> From<AnyTag<'a>> for Mp4Tag {
             config: inp.config,
             inner: {
                 let mut t = mp4ameta::Tag::default();
-                if let Some(v) = inp.title() { t.set_title(v) }
-                if let Some(i) = inp.artists() { i.iter().for_each(|&a| t.add_artist(a)) }
-                if let Some(v) = inp.year { t.set_year(v.to_string()) }
-                if let Some(v) = inp.album_title() { t.set_album(v) }
-                if let Some(i) = inp.album_artists() { i.iter().for_each(|&a| t.add_album_artist(a)) }
-                if let Some(v) = inp.track_number() { t.set_track_number(v) }
-                if let Some(v) = inp.total_tracks() { t.set_total_tracks(v) }
-                if let Some(v) = inp.disc_number() { t.set_disc_number(v) }
-                if let Some(v) = inp.total_discs() { t.set_total_discs(v) }
+                if let Some(v) = inp.title() {
+                    t.set_title(v)
+                }
+                if let Some(i) = inp.artists() {
+                    i.iter().for_each(|&a| t.add_artist(a))
+                }
+                if let Some(v) = inp.year {
+                    t.set_year(v.to_string())
+                }
+                if let Some(v) = inp.album_title() {
+                    t.set_album(v)
+                }
+                if let Some(i) = inp.album_artists() {
+                    i.iter().for_each(|&a| t.add_album_artist(a))
+                }
+                if let Some(v) = inp.track_number() {
+                    t.set_track_number(v)
+                }
+                if let Some(v) = inp.total_tracks() {
+                    t.set_total_tracks(v)
+                }
+                if let Some(v) = inp.disc_number() {
+                    t.set_disc_number(v)
+                }
+                if let Some(v) = inp.total_discs() {
+                    t.set_total_discs(v)
+                }
                 t
             },
         }
