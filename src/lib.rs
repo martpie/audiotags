@@ -60,7 +60,7 @@
 //! assert!(tag.album_cover().is_none());
 //! tag.remove_album_cover();
 //!
-//!     tag.write_to_path("test.mp3").expect("Fail to save");
+//! tag.write_to_path("test.mp3").expect("Fail to save");
 //! ```
 
 pub(crate) use audiotags_dev_macro::*;
@@ -95,11 +95,14 @@ pub use std::convert::{TryFrom, TryInto};
 ///
 /// ```no_run
 /// use audiotags2::{Tag, TagType};
+///
 /// // Guess the format by default
 /// let mut tag = Tag::new().read_from_path("assets/a.mp3").unwrap();
 /// tag.set_title("Foo");
+///
 /// // you can convert the tag type and save the metadata to another file.
 /// tag.to_dyn_tag(TagType::Mp4).write_to_path("assets/a.m4a");
+///
 /// // you can specify the tag type (but when you want to do this, also consider directly using the concrete type)
 /// let tag = Tag::new().with_tag_type(TagType::Mp4).read_from_path("assets/a.m4a").unwrap();
 /// assert_eq!(tag.title(), Some("Foo"));
