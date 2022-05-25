@@ -128,7 +128,7 @@ pub trait AudioTagEdit: AudioTagConfig {
     fn remove_total_discs(&mut self);
 
     fn genre(&self) -> Option<&str>;
-    fn set_genre(&mut self, genre:&str);
+    fn set_genre(&mut self, genre: &str);
     fn remove_genre(&mut self);
 }
 
