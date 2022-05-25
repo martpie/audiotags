@@ -48,7 +48,7 @@ macro_rules! test_file {
 
             let cover = Picture {
                 mime_type: MimeType::Jpeg,
-                data: &vec![0u8; 10],
+                data: &[0u8; 10],
             };
 
             tags.set_album_cover(cover.clone());

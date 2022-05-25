@@ -45,9 +45,9 @@ pub trait AudioTagEdit: AudioTagConfig {
         })
     }
     fn set_album(&mut self, album: Album) {
-        self.set_album_title(&album.title);
+        self.set_album_title(album.title);
         if let Some(artist) = album.artist {
-            self.set_album_artist(&artist)
+            self.set_album_artist(artist)
         } else {
             self.remove_album_artist()
         }

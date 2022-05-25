@@ -22,13 +22,13 @@ impl AudioTagConfig for AnyTag<'_> {
         &self.config
     }
     fn set_config(&mut self, config: Config) {
-        self.config = config.clone();
+        self.config = config;
     }
 }
 
 impl<'a> AnyTag<'a> {
     pub fn title(&self) -> Option<&str> {
-        self.title.as_deref()
+        self.title
     }
     pub fn set_title(&mut self, title: &'a str) {
         self.title = Some(title);
@@ -50,7 +50,7 @@ impl<'a> AnyTag<'a> {
         self.duration = Some(duration);
     }
     pub fn album_title(&self) -> Option<&str> {
-        self.album_title.as_deref()
+        self.album_title
     }
     pub fn album_artists(&self) -> Option<&[&str]> {
         self.album_artists.as_deref()
@@ -68,7 +68,7 @@ impl<'a> AnyTag<'a> {
         self.total_tracks
     }
     pub fn genre(&self) -> Option<&str> {
-        self.genre.as_deref()
+        self.genre
     }
 }
 

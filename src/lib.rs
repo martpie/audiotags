@@ -96,7 +96,7 @@ impl Tag {
     pub fn with_config(self, config: Config) -> Self {
         Self {
             tag_type: self.tag_type,
-            config: config.clone(),
+            config,
         }
     }
     pub fn read_from_path(&self, path: impl AsRef<Path>) -> crate::Result<Box<dyn AudioTag>> {
@@ -111,17 +111,17 @@ impl Tag {
         )?) {
             TagType::Id3v2 => Ok(Box::new({
                 let mut t = Id3v2Tag::read_from_path(path)?;
-                t.set_config(self.config.clone());
+                t.set_config(self.config);
                 t
             })),
             TagType::Mp4 => Ok(Box::new({
                 let mut t = Mp4Tag::read_from_path(path)?;
-                t.set_config(self.config.clone());
+                t.set_config(self.config);
                 t
             })),
             TagType::Flac => Ok(Box::new({
                 let mut t = FlacTag::read_from_path(path)?;
-                t.set_config(self.config.clone());
+                t.set_config(self.config);
                 t
             })),
         }
@@ -156,7 +156,7 @@ impl TagType {
                                                      "mp3" => Ok(Self::Id3v2),
             "m4a" | "m4b" | "m4p" | "m4v" | "isom" | "mp4" => Ok(Self::Mp4),
                                                     "flac" => Ok(Self::Flac),
-            p @ _ => Err(crate::Error::UnsupportedFormat(p.to_owned())),
+            p => Err(crate::Error::UnsupportedFormat(p.to_owned())),
         }
     }
 }
