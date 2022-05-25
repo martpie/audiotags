@@ -1,4 +1,4 @@
-use audiotags::*;
+use audiotags2::*;
 use id3::TagLike;
 use std::fs;
 use tempfile::Builder;

@@ -1,5 +1,5 @@
 [package]
-name = "audiotags"
+name = "audiotags2"
 version = "0.3.0"
 authors = ["Pierre de la Martinière <pierre.de.la.martiniere@gmail.com>"]
 edition = "2021"
