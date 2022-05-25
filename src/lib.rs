@@ -38,31 +38,29 @@
 //! ```rust,no_run
 //! use audiotags2::{Tag, Picture, MimeType};
 //!
-//! fn main() {
-//!     // using `default()` or `new()` alone so that the metadata format is
-//!     // guessed (from the file extension) (in this case, Id3v2 tag is read)
-//!     let mut tag = Tag::new().read_from_path("test.mp3").unwrap();
+//! // using `default()` or `new()` alone so that the metadata format is
+//! // guessed (from the file extension) (in this case, Id3v2 tag is read)
+//! let mut tag = Tag::new().read_from_path("test.mp3").unwrap();
 //!
-//!     tag.set_title("foo title");
-//!     assert_eq!(tag.title(), Some("foo title"));
-//!     tag.remove_title();
-//!     assert!(tag.title().is_none());
-//!     tag.remove_title();
-//!     // trying to remove a field that's already empty won't hurt
+//! tag.set_title("foo title");
+//! assert_eq!(tag.title(), Some("foo title"));
+//! tag.remove_title();
+//! assert!(tag.title().is_none());
+//! tag.remove_title();
+//! // trying to remove a field that's already empty won't hurt
 //!
-//!     let cover = Picture {
-//!         mime_type: MimeType::Jpeg,
-//!         data: &vec![0u8; 10],
-//!     };
+//! let cover = Picture {
+//!     mime_type: MimeType::Jpeg,
+//!     data: &vec![0u8; 10],
+//! };
 //!
-//!     tag.set_album_cover(cover.clone());
-//!     assert_eq!(tag.album_cover(), Some(cover));
-//!     tag.remove_album_cover();
-//!     assert!(tag.album_cover().is_none());
-//!     tag.remove_album_cover();
+//! tag.set_album_cover(cover.clone());
+//! assert_eq!(tag.album_cover(), Some(cover));
+//! tag.remove_album_cover();
+//! assert!(tag.album_cover().is_none());
+//! tag.remove_album_cover();
 //!
 //!     tag.write_to_path("test.mp3").expect("Fail to save");
-//! }
 //! ```
 
 pub(crate) use audiotags_dev_macro::*;
