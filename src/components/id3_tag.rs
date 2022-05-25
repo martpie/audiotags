@@ -1,5 +1,3 @@
-use std::path;
-
 use crate::*;
 
 pub use id3::{self, Tag as Id3v2InnerTag, TagLike};
@@ -96,14 +94,7 @@ impl AudioTagEdit for Id3v2Tag {
         self.inner.remove_year();
     }
     fn duration(&self) -> Option<f64> {
-        match self.inner.duration() {
-            None => None,
-            Some(a) => Some(a as f64)
-
-        }
-    }
-    fn set_duration(&mut self, duration: &str) {
-        self.inner.add_frame(id3::Frame::with_content("TLEN", id3::Content::Text(duration.to_string())));
+        self.inner.duration().map(|d| f64::from(d))
     }
 
     fn album_title(&self) -> Option<&str> {
