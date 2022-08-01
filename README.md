@@ -1,3 +1,5 @@
+> :warning: [`audiotags`](https://github.com/TianyiShi2001/audiotags) is maintained again, there's no need for `audiotags2` anymore! This repository is now archived.
+
 # audiotags2
 
 [![Crate](https://img.shields.io/crates/v/audiotags2.svg)](https://crates.io/crates/audiotags2)
@@ -10,8 +12,7 @@
 This crate makes it easier to parse, convert and write metadata (a.k.a tag) in audio files of different file types.
 
 This crate aims to provide a unified trait for parsers and writers of different audio file formats.
-This means that you can parse tags in mp3, flac, and m4a files with a single function: `Tag::default().
-read_from_path()` and get fields by directly calling `.album()`, `.artist()` on its result. Without this
+This means that you can parse tags in mp3, flac, and m4a files with a single function: `Tag::default(). read_from_path()` and get fields by directly calling `.album()`, `.artist()` on its result. Without this
 crate, you would otherwise need to learn different APIs in **id3**, **mp4ameta** etc. in order to parse
 metadata in different file formats.
 

@@ -64,7 +64,7 @@ impl<'a> AnyTag<'a> {
     pub fn total_discs(&self) -> Option<u16> {
         self.total_tracks
     }
-    pub fn genre(&self) -> Option<&str> {
+    pub fn genre(&self) -> Option<Vec<&str>> {
         self.genre
     }
 }
